@@ -1,50 +1,54 @@
-Exploring Greenhouse Pest Detection Using Grounding DINO, SAM, and CLIP Embeddings
-Overview
+🌱 Exploring Greenhouse Pest Detection Using
+Grounding DINO, SAM, and CLIP Embeddings
+---
+📌 Overview
 
-This project explores a small-object detection and segmentation system for greenhouse pest monitoring, focusing on two common pests: whiteflies and aphids.
-The system combines Grounding DINO, SAM (Segment Anything Model), and CLIP embeddings, enhanced with SAHI, to detect and segment small, densely packed pests using text prompts with minimal training.
+This project explores a small-object detection and segmentation system for greenhouse pest monitoring, with a focus on whiteflies and aphids.
+It combines Grounding DINO, Segment Anything Model (SAM), and CLIP embeddings, enhanced by SAHI, to detect pests using text prompts with minimal training.
 
-The project was developed as part of a Computer Vision course at university and serves as an experimental exploration of modern foundation models for agricultural applications.
+Developed as part of a University Computer Vision course, this project investigates the effectiveness of modern foundation models in agricultural vision tasks.
+---
+🎯 Motivation
 
-Motivation
+Greenhouse pest detection is challenging due to:
 
-Detecting greenhouse pests is challenging due to:
+Extremely small object sizes
 
-Small object sizes
+Dense clustering of insects
 
-Dense clustering
+Complex and cluttered backgrounds
 
-Complex backgrounds
+Traditional object detectors often struggle in such conditions. This project evaluates whether zero-shot detection and segmentation models, guided by language prompts, can provide a flexible and robust alternative.
+---
+🧠 System Architecture
 
-Traditional detectors often struggle in these conditions. This project investigates whether zero-shot and foundation models, guided by language prompts and segmentation, can provide a flexible and effective alternative with minimal dataset-specific training.
+The system consists of the following components:
 
-System Architecture
+🔹 Grounding DINO
 
-The pipeline consists of the following components:
+Zero-shot object detector guided by text prompts
 
-Grounding DINO
+Produces bounding boxes for target pests (e.g., “whitefly”, “aphid”)
 
-A zero-shot object detector guided by text prompts
-
-Produces bounding boxes for specified pest classes (e.g., “whitefly”, “aphid”)
-
-SAHI (Slicing Aided Hyper Inference)
+🔹 SAHI (Slicing Aided Hyper Inference)
 
 Improves detection of small and densely packed objects
 
-Splits images into overlapping tiles before detection
+Splits images into overlapping tiles before inference
 
-SAM (Segment Anything Model)
+🔹 Segment Anything Model (SAM)
 
-Generates segmentation masks from detected bounding boxes
+Generates high-quality segmentation masks
 
-CLIP Embeddings
+Uses bounding boxes from Grounding DINO as prompts
 
-Used for semantic verification of detected segments
+🔹 CLIP Embeddings
 
-Helps ensure detected objects align with the intended textual concept
+Provides semantic verification
 
-Dataset
+Ensures detected regions align with the intended text prompts
+---
+📂 Dataset
 
 Source: Custom dataset created and managed using Roboflow
 
@@ -52,35 +56,33 @@ Content: Greenhouse images containing whiteflies and aphids
 
 Usage:
 
-Used primarily for evaluation and statistics
+Used for analysis and statistics
 
-The detection itself relies on zero-shot inference, not supervised training
+Detection relies on zero-shot inference, not supervised training
+---
+⚙️ Methodology
 
-Methodology
-
-Input images are processed using SAHI to enhance small-object detection.
+Images are sliced using SAHI to enhance small-object detection.
 
 Grounding DINO detects pests based on text prompts.
 
 Detected bounding boxes are passed to SAM to generate segmentation masks.
 
-CLIP embeddings are used to verify semantic consistency between detected regions and the target pest classes.
+CLIP embeddings verify semantic consistency between detections and target classes.
 
-Final outputs include bounding boxes and segmentation masks overlaid on the original images.
+Final results are visualized with bounding boxes and segmentation masks.
+---
+📊 Results
 
-Results
+Successful detection and segmentation of whiteflies and aphids
 
-The system successfully detected and segmented whiteflies and aphids in greenhouse images.
+Improved performance on small objects using SAHI
 
-SAHI significantly improved detection performance for small and clustered pests.
-
-The combined architecture produced visually accurate bounding boxes and segmentation masks, demonstrating the effectiveness of foundation models for agricultural vision tasks.
-
-How to Run (Google Colab)
+Accurate and interpretable visual outputs suitable for monitoring tasks
+---
+▶️ How to Run (Google Colab)
 
 Open the notebook in Google Colab.
-
-Important:
 
 Run the initial setup cell first (before downloading Grounding DINO).
 
@@ -88,14 +90,14 @@ Update the supervision library as instructed in the notebook.
 
 Restart the runtime after updating dependencies.
 
-Run all cells again from top to bottom.
+Run all cells from top to bottom.
 
-Provide images and text prompts to perform detection and segmentation.
-
-Outputs
+Provide input images and text prompts to perform detection.
+---
+🖼️ Outputs
 
 Bounding boxes around detected pests
 
 Segmentation masks highlighting pest regions
 
-Visualized results directly within the Colab notebook
+Visualized results displayed directly in the notebook
